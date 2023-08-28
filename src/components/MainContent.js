@@ -1,11 +1,15 @@
-import { Container, Grid } from '@material-ui/core';
+import React from 'react';
+import { Container, Typography } from '@mui/material';
 
 function MainContent() {
   return (
-    <Container>
-      <Grid container spacing={3}>
-        {/* Add grid items here */}
-      </Grid>
+    <Container maxWidth="lg">
+      <Typography variant="h4" gutterBottom>
+        Welcome to Real Estate Scroller
+      </Typography>
+      <Typography variant="body1">
+        Use this platform to research and analyze real estate markets, find agents, view listings, and manage your CRM.
+      </Typography>
     </Container>
   );
 }
