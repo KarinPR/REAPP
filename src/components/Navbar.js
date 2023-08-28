@@ -1,12 +1,24 @@
 import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, Button, Hidden, Drawer, List, ListItem, ListItemText } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import Link from 'next/link';
+import { Grid } from '@mui/material';
 
 function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  return (
+    <Grid container spacing={3}>
+      <Grid item xs={12} sm={6}>
+        <Link href="/">Home</Link>
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <Link href="/market-research">Market Research</Link>
+      </Grid>
+    </Grid>
+  );
   };
 
   const drawer = (
