@@ -2,31 +2,28 @@ import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, Button, Hidden, Drawer, List, ListItem, ListItemText } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link';
-import { Grid } from '@mui/material';
+import { useRouter } from 'next/router';
 
 function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-
+  const router = useRouter();
+  const isActive = (href) => router.pathname === href;
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
-  return (
-    <Grid container spacing={3}>
-      <Grid item xs={12} sm={6}>
-        <Link href="/">Home</Link>
-      </Grid>
-      <Grid item xs={12} sm={6}>
-        <Link href="/market-research">Market Research</Link>
-      </Grid>
-    </Grid>
-  );
   };
 
   const drawer = (
     <List>
-      {['Home', 'Market Research'].map((text) => (
-        <ListItem button key={text}>
-          <ListItemText primary={text} />
-        </ListItem>
+      {[
+        { text: 'Home', href: '/' },
+        { text: 'Market Research', href: '/market-research' },
+        { text: 'My Profile', href: '/profile' }
+      ].map((item) => (
+        <Link href={item.href} key={item.text} passHref>
+          <ListItem button>
+            <ListItemText primary={item.text} />
+          </ListItem>
+        </Link>
       ))}
     </List>
   );
@@ -34,12 +31,19 @@ function Navbar() {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h6" style={{ flexGrow: 1 }}>
+        <Typography variant="h6" style={{ flexGrow: 1, color: 'white', textDecoration: 'none' }}>
           Real Estate Scroller
         </Typography>
         <Hidden smDown>
-          <Button color="inherit">Home</Button>
-          <Button color="inherit">Market Research</Button>
+          <Link href="/" passHref>
+            <Button style={{ color: isActive('/') ? 'white' : 'white' }}>Home</Button>
+          </Link>
+          <Link href="/market-research" passHref>
+            <Button style={{ color: isActive('/') ? 'white' : 'white' }}>Market Research</Button>
+          </Link>
+          <Link href="/profile" passHref>
+            <Button style={{ color: isActive('/') ? 'white' : 'white' }}>My Profile</Button>
+          </Link>
         </Hidden>
         <Hidden mdUp>
           <Button color="inherit" onClick={handleDrawerToggle}>

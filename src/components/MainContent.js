@@ -4,7 +4,7 @@ import { Container, Typography } from '@mui/material';
 function MainContent() {
   return (
     <Container maxWidth="lg">
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h6" gutterBottom>
         Welcome to Real Estate Scroller
       </Typography>
       <Typography variant="body1">
